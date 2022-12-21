@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  user-select: none;
+  /* 不能拖拽 */
+  -webkit-user-drag: none;
+  /* 不能选择 webkit是针对chrome和firebox浏览器的，safari有别的名，webkit对其不产生作用 */
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  place-items: center;
+  flex-direction: column;
+}
+
+
+input {
+  display: block;
+  font-size: 32px;
+}
+
+span {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  border: 1px solid;
+  margin: 2rem;
+  padding: 1rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.1s; /*给active一个转化的时间设定，这样视觉效果能更柔和一些*/
+}
+ /* 点击后的特效： */
+span:active {
+  background-color: black;
+  color: white;
+}
+
+table,
+th,
+td {
+  width: 340px;
+  height: 30px;
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  width: 10rem;
+  text-align: center;
+}
