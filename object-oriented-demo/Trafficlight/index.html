@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box img {
+        width: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <script>
+      //  TrafficLight Attributes & Methods
+      // 1. Attributes: own color, own DOM-to manage dom(img)
+      // 2. Methods: init(), changeColor(), bindEvent()
+
+      // Define TrafficLight Class(定义红绿灯类)
+      function TrafficLight() {
+        // 1.initial color：red(颜色属性，一开始都是红色)
+        //red1，yellow2，green3
+        this.color = 1;
+        // 2.Call its own initialization method（调用自己的初始化方法）
+        this.init();
+        // 3. bindEvent
+        this.bindEvent();
+      }
+
+      TrafficLight.prototype.init = function () {
+        // create own DOM(创建自己的DOM)
+        this.dom = document.createElement("img");
+        //set src（设置src属性）
+        this.dom.src = "images/" + this.color + ".jpg";
+        box.appendChild(this.dom);
+      };
+
+      // bindEvent()-绑定监听
+      TrafficLight.prototype.bindEvent = function () {
+        // Backup Context(备份上下文，这里的this指的是JS的实例)
+        const self = this;
+        // when self's dom onclick(当自己的dom被点击的时候)
+        this.dom.onclick = function () {
+          //当被点击的时候，调用自己的changeColor方法
+          self.changeColor();
+        };
+      };
+      //change color(改变颜色)
+      TrafficLight.prototype.changeColor = function () {
+        //改变自己的color属性，从而有一种“自治”的感觉，自己管理自己，不干扰别的红绿灯
+        this.color++;
+        if (this.color == 4) {
+          this.color = 1;
+        }
+        //光color属性变化没有用，还要更改自己的dom的src属性
+        this.dom.src = "images/" + this.color + ".jpg";
+      };
+      //get box(得到盒子)
+      const box = document.getElementById("box");
+
+      // const t1 = new TrafficLight();
+      // console.log(t1);
+
+      // 实例化100个：
+      let count = 100;
+
+      // when count-- !== 0 （不等于0时）:
+      while (count--) {
+        new TrafficLight();
+      }
+    </script>
+  </body>
+</html>
