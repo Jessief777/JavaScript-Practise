@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>2021 China College Entrance Exam Date Countdown</h1>
+    <h2 id="info"></h2>
+    <script>
+      const info = document.getElementById("info");
+
+      setInterval(function () {
+        // now date
+        const nd = new Date();
+        //target date,5 means June
+        const td = new Date(2023, 5, 7);
+        //Millisecond difference毫秒差
+        const diff = nd - td;
+
+        // change the diff to date+hour+minutes+second
+        // 1. change to day(除以一天的总毫秒数，就是换算为多少天)
+        const days = parseInt(diff / (1000 * 60 * 60 * 24));
+        // 2. change to hours (零多少小时,差的总毫秒数与1天的毫秒数的相除的余数，就是零头的毫秒数)
+        const hours = parseInt(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        // 3. change to minutes（零多少分钟）
+        // const minutes = parseInt(
+        //   ((diff % (1000 * 60 * 60 * 24)) % (1000 * 60 * 60)) / (1000 * 60)
+        // );
+        const minutes = parseInt((diff % (1000 * 60 * 60)) / (1000 * 60));
+        // 4. change to seconds (零多少秒)
+        const seconds = parseInt(
+          ((diff % (1000 * 60 * 60)) % (1000 * 60)) / 1000
+        );
+
+        console.log(days);
+        console.log(hours);
+        console.log(minutes);
+        console.log(seconds);
+
+        info.innerText = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+      }, 1000);
+    </script>
+  </body>
+</html>
