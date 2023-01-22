@@ -30,8 +30,10 @@ const uppercase = names.map((name)=>{
     return name[0].toUpperCase() + name.slice(1)
     // return `${name[0].toUpperCase()}${name.slice(1)}`
 })
+// const uppercase = names.map((name)=>name[0].toUpperCase() + name.slice(1))
 
 console.log(uppercase)
+
 
 
 /*
@@ -49,5 +51,6 @@ const pokemon = ["Bulbasaur", "Charmander", "Squirtle"]
 const elements = pokemon.map((mon)=>{
     return `<p>${mon}</p>`
 })
+//const elements = pokemon.map((mon)=>`<p>${mon}</p>`)
 
 console.log(elements)
