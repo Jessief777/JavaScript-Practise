@@ -1,6 +1,6 @@
 /* 
 1. Create an api server provide following endpoints
-GET  /tasks      get all tasks (follow query params for filtering)
+GET  /tasks      get all tasks (allow query params for filtering)
 GET  /tasks/:id  get task by id
 GET /tasks?description=xxx (filtering)
 PUT  /tasks/:id  update task by id
@@ -11,62 +11,41 @@ DELETE  /tasks/:id  delete task by id
 */
 const express = require("express");
 const app = express();
-app.use(express.json())
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-//let id = 1; // id++ =>2
-// const tasks = {
-//   "data":[
-//     {
-//       id: 1,
-//       description: "mop the floor",
-//       done: false,
-//     },
-//     { id: 2, 
-//       description: "clean living room", 
-//       done: false 
-//     },
-//     {
-//       id:3,
-//       description:"wash socks",
-//       done:false
-//     }
-//   ]
-// }
+app.use(bodyParser.json());
 
-const tasks = [
-      {
-        id: 1,
-        description: "mop the floor",
-        done: false,
-      },
-      { id: 2, 
-        description: "clean living room", 
-        done: false 
-      },
-      {
-        id:3,
-        description:"wash socks",
-        done:false
-      }
-  ]
+//
+const tasks = [];
+let id = 1;
+// uuid, nanoid
 
-console.log(tasks);
-// 
-app.get('/tasks',(req,res,next)=>{
-  res.status(200).json(tasks)
-  next()
-})
+app.use(cors);
 
-app.get('/tasks/:id',(req,res,next)=>{
-  res.status(200).json(tasks)
-  next()
-})
+app.get('/tasks', (req, res) => {
+  res.json({});
+});
 
-app.put('/tasks/:id',(req,res,next)=>{
-  res.status(200).json(tasks)
-  next()
-})
 
+function cors(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  next();
+}
+
+// app.get("/tasks", (req, res) => {
+//   res.status(200).json({ tasks });
+// });
+
+// app.get("/tasks/:id", (req, res) => {
+//   res.status(200).json(req.params.id);
+// });
+
+// app.put("/tasks/:id", (req, res) => {
+//   res.status(200).json(tasks);
+// });
 
 app.listen(3000, () => {
   console.log("server listening on port 3000");
